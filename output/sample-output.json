@@ -1,0 +1,468 @@
+{
+  "file": "input/raw-text.txt",
+  "kinds": [
+    "mails",
+    "cards",
+    "links",
+    "tels"
+  ],
+  "mails": [
+    {
+      "hide": "b***@gmail.com",
+      "alu": "general"
+    },
+    {
+      "hide": "b***@gmail.com",
+      "alu": "general"
+    },
+    {
+      "hide": "b***@yahoo.com",
+      "alu": "general"
+    },
+    {
+      "hide": "c***@alueducation.com",
+      "alu": "official"
+    },
+    {
+      "hide": "c***@alueducation.com",
+      "alu": "official"
+    },
+    {
+      "hide": "P***@ALUEDUCATION.COM",
+      "alu": "official"
+    },
+    {
+      "hide": "f***@alumni.alueducation.com",
+      "alu": "alumni"
+    },
+    {
+      "hide": "f***@alumni.alueducation.com",
+      "alu": "alumni"
+    },
+    {
+      "hide": "D***@ALUMNI.ALUEDUCATION.COM",
+      "alu": "alumni"
+    },
+    {
+      "hide": "e***@si.alueducation.com",
+      "alu": "si"
+    },
+    {
+      "hide": "e***@si.alueducation.com",
+      "alu": "si"
+    },
+    {
+      "hide": "p***@SI.ALUEDUCATION.COM",
+      "alu": "si"
+    },
+    {
+      "hide": "o***@mail.com",
+      "alu": "general"
+    },
+    {
+      "hide": "l***@alueducation.com.evil.com",
+      "alu": "general"
+    },
+    {
+      "hide": "l***@alueducation.com.evil.com",
+      "alu": "general"
+    },
+    {
+      "hide": "h***@fake-alueducation.com",
+      "alu": "general"
+    },
+    {
+      "hide": "a***@si.alueducation.com.evil.org",
+      "alu": "general"
+    },
+    {
+      "hide": "g***@sub.mail.example.net",
+      "alu": "general"
+    },
+    {
+      "hide": "g***@sub.mail.example.net",
+      "alu": "general"
+    },
+    {
+      "hide": "a***@gmail.com",
+      "alu": "general"
+    },
+    {
+      "hide": "p***@company.co.uk",
+      "alu": "general"
+    },
+    {
+      "hide": "n***@mail-hub.example.org",
+      "alu": "general"
+    },
+    {
+      "hide": "s***@alueducation.com",
+      "alu": "official"
+    },
+    {
+      "hide": "r***@alumni.alueducation.com",
+      "alu": "alumni"
+    },
+    {
+      "hide": "e***@si.alueducation.com",
+      "alu": "si"
+    },
+    {
+      "hide": "s***@evil.com",
+      "alu": "general"
+    },
+    {
+      "hide": "k***@lab.example.com.au",
+      "alu": "general"
+    },
+    {
+      "hide": "d***@alueducation.com.evil.com",
+      "alu": "general"
+    },
+    {
+      "hide": "a***@gmail.com",
+      "alu": "general"
+    },
+    {
+      "hide": "p***@company.co.uk",
+      "alu": "general"
+    },
+    {
+      "hide": "k***@lab.example.com.au",
+      "alu": "general"
+    },
+    {
+      "hide": "g***@sub.mail.example.net",
+      "alu": "general"
+    },
+    {
+      "hide": "s***@alueducation.com",
+      "alu": "official"
+    },
+    {
+      "hide": "b***@example.com",
+      "alu": "general"
+    },
+    {
+      "hide": "a***@alueducation.com",
+      "alu": "official"
+    },
+    {
+      "hide": "J***@Example.COM",
+      "alu": "general"
+    },
+    {
+      "hide": "l***@mail-eu.example.com",
+      "alu": "general"
+    },
+    {
+      "hide": "z***@q.co",
+      "alu": "general"
+    },
+    {
+      "hide": "t***@unit.example.io",
+      "alu": "general"
+    },
+    {
+      "hide": "C***@alueducation.com",
+      "alu": "official"
+    },
+    {
+      "hide": "d***@si.alueducation.com",
+      "alu": "si"
+    },
+    {
+      "hide": "y***@alumni.alueducation.com",
+      "alu": "alumni"
+    },
+    {
+      "hide": "o***@alueducation.com.attacker.com",
+      "alu": "general"
+    },
+    {
+      "hide": "o***@fakealueducation.com",
+      "alu": "general"
+    },
+    {
+      "hide": "z***@si.alueducation.com.evil.org",
+      "alu": "general"
+    },
+    {
+      "hide": "a***@gmail.com",
+      "alu": "general"
+    },
+    {
+      "hide": "e***@si.alueducation.com",
+      "alu": "si"
+    },
+    {
+      "hide": "f***@alumni.alueducation.com",
+      "alu": "alumni"
+    },
+    {
+      "hide": "s***@alueducation.com",
+      "alu": "official"
+    },
+    {
+      "hide": "d***@alueducation.com.evil.com",
+      "alu": "general"
+    }
+  ],
+  "alu_official": [
+    "c***@alueducation.com",
+    "c***@alueducation.com",
+    "P***@ALUEDUCATION.COM",
+    "s***@alueducation.com",
+    "s***@alueducation.com",
+    "a***@alueducation.com",
+    "C***@alueducation.com",
+    "s***@alueducation.com"
+  ],
+  "alu_alumni": [
+    "f***@alumni.alueducation.com",
+    "f***@alumni.alueducation.com",
+    "D***@ALUMNI.ALUEDUCATION.COM",
+    "r***@alumni.alueducation.com",
+    "y***@alumni.alueducation.com",
+    "f***@alumni.alueducation.com"
+  ],
+  "alu_si": [
+    "e***@si.alueducation.com",
+    "e***@si.alueducation.com",
+    "p***@SI.ALUEDUCATION.COM",
+    "e***@si.alueducation.com",
+    "d***@si.alueducation.com",
+    "e***@si.alueducation.com"
+  ],
+  "cards": [
+    {
+      "hide": "XXXX-XXXX-XXXX-1111",
+      "ok": true
+    },
+    {
+      "hide": "XXXX-XXXX-XXXX-4444",
+      "ok": true
+    },
+    {
+      "hide": "XXXX-XXXX-XXXX-0005",
+      "ok": true
+    },
+    {
+      "hide": "XXXX-XXXX-XXXX-1117",
+      "ok": true
+    },
+    {
+      "hide": "XXXX-XXXX-XXXX-1111",
+      "ok": true
+    },
+    {
+      "hide": "XXXX-XXXX-XXXX-1881",
+      "ok": true
+    },
+    {
+      "hide": "XXXX-XXXX-XXXX-0005",
+      "ok": true
+    },
+    {
+      "hide": "XXXX-XXXX-XXXX-4444",
+      "ok": true
+    }
+  ],
+  "links": [
+    {
+      "link": "https://library.example.rw/shelves/beatrice?view=all"
+    },
+    {
+      "link": "https://portal.alueducation.com/library/rota#week20"
+    },
+    {
+      "link": "https://alumni.alueducation.com/awards/2026spring?from=desk"
+    },
+    {
+      "link": "http://si.alueducation.com/print/book?s=3"
+    },
+    {
+      "link": "http://reset-alueducation.evil.com/?u=claude.b"
+    },
+    {
+      "link": "https://bills.example.net/t/88112?c=rwf"
+    },
+    {
+      "link": "https://example.com/members/aline.s"
+    },
+    {
+      "link": "https://company.co.uk/m/peter?x=lib"
+    },
+    {
+      "link": "http://notes.example.org/~nadia/kigali"
+    },
+    {
+      "link": "https://portal.alueducation.com/m/samuel.k"
+    },
+    {
+      "link": "https://alumni.alueducation.com/m/ruth.a"
+    },
+    {
+      "link": "https://si.alueducation.com/u/eric"
+    },
+    {
+      "link": "https://example.com:9443/q?city=musanze#m"
+    },
+    {
+      "link": "https://alueducation.com.evil.com/in"
+    },
+    {
+      "link": "https://library.example.rw/hours"
+    },
+    {
+      "link": "https://catalog.example.com:8080/s?q=becca&lang=en#r"
+    },
+    {
+      "link": "https://evil.example.com/e"
+    },
+    {
+      "link": "https://evil.example.com/v.swf"
+    },
+    {
+      "link": "https://example.com"
+    },
+    {
+      "link": "http://unit.example.co.uk/r?a=1&b=2#s"
+    },
+    {
+      "link": "https://example.com:9000/g_h-i.j?k=go%20home"
+    },
+    {
+      "link": "https://pay.example.com/r/cc_40"
+    },
+    {
+      "link": "https://si.alueducation.com/print?w=late#n"
+    },
+    {
+      "link": "https://alumni.alueducation.com/tea/april"
+    },
+    {
+      "link": "http://reset-alueducation.evil.com/"
+    },
+    {
+      "link": "https://app.example.com/lib?v=4.0"
+    }
+  ],
+  "tels": [
+    {
+      "hide": "+*** *** 204"
+    },
+    {
+      "hide": "+*** *** 409"
+    },
+    {
+      "hide": "+*** *** 820"
+    },
+    {
+      "hide": "+*** *** 114"
+    },
+    {
+      "hide": "+*** *** 429"
+    },
+    {
+      "hide": "+*** *** 311"
+    },
+    {
+      "hide": "+*** *** 098"
+    },
+    {
+      "hide": "+*** *** 519"
+    },
+    {
+      "hide": "+*** *** 455"
+    },
+    {
+      "hide": "+*** *** 331"
+    },
+    {
+      "hide": "+*** *** 982"
+    },
+    {
+      "hide": "+*** *** 163"
+    },
+    {
+      "hide": "+*** *** 007"
+    },
+    {
+      "hide": "+*** *** 005"
+    },
+    {
+      "hide": "+*** *** 111"
+    },
+    {
+      "hide": "+*** *** 204"
+    },
+    {
+      "hide": "+*** *** 771"
+    },
+    {
+      "hide": "+*** *** 204"
+    },
+    {
+      "hide": "+*** *** 163"
+    },
+    {
+      "hide": "+*** *** 204"
+    },
+    {
+      "hide": "+*** *** 204"
+    },
+    {
+      "hide": "+*** *** 820"
+    },
+    {
+      "hide": "+*** *** 311"
+    },
+    {
+      "hide": "+*** *** 114"
+    },
+    {
+      "hide": "+*** *** 144"
+    },
+    {
+      "hide": "+*** *** 204"
+    }
+  ],
+  "dangers": [
+    {
+      "line": 77,
+      "tag": "script",
+      "cut": "@troll: <b>fine</b> but <script>alert(\"hi\")</script> removed. also <img src=x onerror=alert(9)> removed"
+    },
+    {
+      "line": 78,
+      "tag": "script",
+      "cut": "@sec: removed <iframe src=\"https://evil.example.com/e\"></iframe>, also javascript:alert(document.cookie) and data:text/h"
+    },
+    {
+      "line": 79,
+      "tag": "drop",
+      "cut": "@db: flagged \"'; DROP TABLE members; --\" and \"UNION SELECT * FROM bursary\" plus number [card-hidden]on that line"
+    },
+    {
+      "line": 80,
+      "tag": "tautology",
+      "cut": "@login: failed signin for ' OR '1'='1' -- as reader [mail-hidden]"
+    },
+    {
+      "line": 81,
+      "tag": "script",
+      "cut": "@forum: <object data=\"https://evil.example.com/v.swf\"></object> and <embed src=\"z\"> removed. mail bad<script>@example.co"
+    }
+  ],
+  "totals": {
+    "mails": 50,
+    "official": 8,
+    "alumni": 6,
+    "si": 6,
+    "cards": 8,
+    "links": 26,
+    "tels": 26,
+    "danger": 5
+  }
+}
