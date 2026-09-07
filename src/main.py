@@ -2,15 +2,15 @@ import re
 import json
 from pathlib import Path
 
-SRC = "input/raw-text.txt"
-DST = "output/sample-output.json"
+SOURCE = "input/raw-text.txt"
+DESTINATION = "output/sample-output.json"
 
-PAT_MAIL = re.compile(r"[A-Za-z0-9._%+\-]+@[A-Za-z0-9.\-]+\.[A-Za-z]{2,}")
-PAT_CARD = re.compile(r"\b(?:\d[ \-]*){13,19}\b")
-PAT_LINK = re.compile(r"https?://[^\s<>\"']+", re.IGNORECASE)
-PAT_TEL = re.compile(r"\+?\d[\d .()\-]{6,20}\d")
+REGEX_MAIL = re.compile(r"[A-Za-z0-9._%+\-]+@[A-Za-z0-9.\-]+\.[A-Za-z]{2,}")
+REGEX_CREDIT_CARD = re.compile(r"\b(?:\d[ \-]*){13,19}\b")
+REGEX_URL = re.compile(r"https?://[^\s<>\"']+", re.IGNORECASE)
+REGEX_TELEPHONE = re.compile(r"\+?\d[\d .()\-]{6,20}\d")
 
-THREATS = [
+REGEX_THREATS = [
     (re.compile(r"<\s*script", re.I), "script"),
     (re.compile(r"<\s*iframe", re.I), "iframe"),
     (re.compile(r"<\s*(object|embed)", re.I), "plugin"),
@@ -24,7 +24,7 @@ THREATS = [
 
 END_CHARS = ".,;:!?)]}'\"\\"
 
-def read_src(path=SRC):
+def read_src(path=SOURCE):
     try:
         with open(path, encoding="utf-8") as handle:
             return handle.read()
@@ -68,7 +68,7 @@ def alu_kind(mail_text):
         return "alumni"
     if domain == "alueducation.com":
         return "official"
-    return "general"
+    return "Non-ALU"
 
 def check_card(card_text):
     number = re.sub(r"[ \-]", "", card_text.strip())
@@ -130,14 +130,14 @@ def short_tel(phone_text):
     return "+*** *** " + digits[-3:]
 
 def clean_snip(line):
-    line = PAT_MAIL.sub("[mail-hidden]", line)
+    line = REGEX_MAIL.sub("[mail-hidden]", line)
     line = re.sub(r"\b(?:\d[ \-]*){13,19}\b", "[card-hidden]", line)
     return line.strip()[:120]
 
 def danger(text):
     out = []
     for number, line in enumerate(text.splitlines(), 1):
-        for pattern, label in THREATS:
+        for pattern, label in REGEX_THREATS:
             if pattern.search(line):
                 out.append({"line": number, "tag": label, "cut": clean_snip(line)})
                 break
@@ -148,7 +148,7 @@ def gather(text):
     off = []
     alm = []
     si = []
-    for found in PAT_MAIL.finditer(text):
+    for found in REGEX_MAIL.finditer(text):
         value = found.group(0).strip().strip(END_CHARS + ",")
         if not check_mail(value):
             continue
@@ -168,26 +168,26 @@ def gather(text):
         pos.append(found.start() + 1)
     import bisect
     cards = []
-    for found in PAT_CARD.finditer(text):
+    for found in REGEX_CREDIT_CARD.finditer(text):
         if bisect.bisect_right(pos, found.start()) in badlines:
             continue
         value = found.group(0).strip()
         if check_card(value):
             cards.append({"hide": short_card(value), "ok": True})
     links = []
-    for found in PAT_LINK.finditer(text):
+    for found in REGEX_URL.finditer(text):
         value = found.group(0).rstrip(END_CHARS)
         if check_link(value):
             links.append({"link": value})
     tels = []
-    for found in PAT_TEL.finditer(text):
+    for found in REGEX_TELEPHONE.finditer(text):
         value = found.group(0).strip().rstrip(".,;:")
         if check_tel(value):
             tels.append({"hide": short_tel(value)})
     return mails, off, alm, si, cards, links, tels, bad
 
 def main():
-    text = read_src(SRC)
+    text = read_src(SOURCE)
     if not text:
         print("empty")
         return None
@@ -206,8 +206,6 @@ def main():
         print(tel_info["hide"])
     print("danger " + str(len(bad)))
     data = {
-        "file": SRC,
-        "kinds": ["mails", "cards", "links", "tels"],
         "mails": mails,
         "alu_official": off,
         "alu_alumni": alm,
@@ -227,11 +225,11 @@ def main():
             "danger": len(bad),
         },
     }
-    p = Path(DST)
-    p.parent.mkdir(parents=True, exist_ok=True)
-    with open(p, "w", encoding="utf-8") as handle:
+    outputPath = Path(DESTINATION)
+    outputPath.parent.mkdir(parents=True, exist_ok=True)
+    with open(outputPath, "w", encoding="utf-8") as handle:
         json.dump(data, handle, indent=2, ensure_ascii=False)
-    print("saved " + DST)
+    print("saved " + DESTINATION)
     return data
 
 if __name__ == "__main__":

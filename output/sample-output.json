@@ -1,23 +1,16 @@
 {
-  "file": "input/raw-text.txt",
-  "kinds": [
-    "mails",
-    "cards",
-    "links",
-    "tels"
-  ],
   "mails": [
     {
       "hide": "b***@gmail.com",
-      "alu": "general"
+      "alu": "Non-ALU"
     },
     {
       "hide": "b***@gmail.com",
-      "alu": "general"
+      "alu": "Non-ALU"
     },
     {
       "hide": "b***@yahoo.com",
-      "alu": "general"
+      "alu": "Non-ALU"
     },
     {
       "hide": "c***@alueducation.com",
@@ -57,43 +50,43 @@
     },
     {
       "hide": "o***@mail.com",
-      "alu": "general"
+      "alu": "Non-ALU"
     },
     {
       "hide": "l***@alueducation.com.evil.com",
-      "alu": "general"
+      "alu": "Non-ALU"
     },
     {
       "hide": "l***@alueducation.com.evil.com",
-      "alu": "general"
+      "alu": "Non-ALU"
     },
     {
       "hide": "h***@fake-alueducation.com",
-      "alu": "general"
+      "alu": "Non-ALU"
     },
     {
       "hide": "a***@si.alueducation.com.evil.org",
-      "alu": "general"
+      "alu": "Non-ALU"
     },
     {
       "hide": "g***@sub.mail.example.net",
-      "alu": "general"
+      "alu": "Non-ALU"
     },
     {
       "hide": "g***@sub.mail.example.net",
-      "alu": "general"
+      "alu": "Non-ALU"
     },
     {
       "hide": "a***@gmail.com",
-      "alu": "general"
+      "alu": "Non-ALU"
     },
     {
       "hide": "p***@company.co.uk",
-      "alu": "general"
+      "alu": "Non-ALU"
     },
     {
       "hide": "n***@mail-hub.example.org",
-      "alu": "general"
+      "alu": "Non-ALU"
     },
     {
       "hide": "s***@alueducation.com",
@@ -109,31 +102,31 @@
     },
     {
       "hide": "s***@evil.com",
-      "alu": "general"
+      "alu": "Non-ALU"
     },
     {
       "hide": "k***@lab.example.com.au",
-      "alu": "general"
+      "alu": "Non-ALU"
     },
     {
       "hide": "d***@alueducation.com.evil.com",
-      "alu": "general"
+      "alu": "Non-ALU"
     },
     {
       "hide": "a***@gmail.com",
-      "alu": "general"
+      "alu": "Non-ALU"
     },
     {
       "hide": "p***@company.co.uk",
-      "alu": "general"
+      "alu": "Non-ALU"
     },
     {
       "hide": "k***@lab.example.com.au",
-      "alu": "general"
+      "alu": "Non-ALU"
     },
     {
       "hide": "g***@sub.mail.example.net",
-      "alu": "general"
+      "alu": "Non-ALU"
     },
     {
       "hide": "s***@alueducation.com",
@@ -141,7 +134,7 @@
     },
     {
       "hide": "b***@example.com",
-      "alu": "general"
+      "alu": "Non-ALU"
     },
     {
       "hide": "a***@alueducation.com",
@@ -149,19 +142,19 @@
     },
     {
       "hide": "J***@Example.COM",
-      "alu": "general"
+      "alu": "Non-ALU"
     },
     {
       "hide": "l***@mail-eu.example.com",
-      "alu": "general"
+      "alu": "Non-ALU"
     },
     {
       "hide": "z***@q.co",
-      "alu": "general"
+      "alu": "Non-ALU"
     },
     {
       "hide": "t***@unit.example.io",
-      "alu": "general"
+      "alu": "Non-ALU"
     },
     {
       "hide": "C***@alueducation.com",
@@ -177,19 +170,19 @@
     },
     {
       "hide": "o***@alueducation.com.attacker.com",
-      "alu": "general"
+      "alu": "Non-ALU"
     },
     {
       "hide": "o***@fakealueducation.com",
-      "alu": "general"
+      "alu": "Non-ALU"
     },
     {
       "hide": "z***@si.alueducation.com.evil.org",
-      "alu": "general"
+      "alu": "Non-ALU"
     },
     {
       "hide": "a***@gmail.com",
-      "alu": "general"
+      "alu": "Non-ALU"
     },
     {
       "hide": "e***@si.alueducation.com",
@@ -205,7 +198,7 @@
     },
     {
       "hide": "d***@alueducation.com.evil.com",
-      "alu": "general"
+      "alu": "Non-ALU"
     }
   ],
   "alu_official": [
