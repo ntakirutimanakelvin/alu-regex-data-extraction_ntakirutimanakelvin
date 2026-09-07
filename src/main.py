@@ -116,3 +116,123 @@ def check_tel(s):
         if not (plus or par or len(re.findall(r"[\s.\-()]", s)) >= 2):
             return False
     return True
+
+def short_mail(s):
+    a, b = s.split("@", 1)
+    return a[0] + "***@" + b
+
+def short_card(s):
+    d = re.sub(r"[ \-]", "", s)
+    return "XXXX-XXXX-XXXX-" + d[-4:]
+
+def short_tel(s):
+    d = re.sub(r"\D", "", s)
+    return "+*** *** " + d[-3:]
+
+def clean_snip(line):
+    line = PAT_MAIL.sub("[mail-hidden]", line)
+    line = re.sub(r"\b(?:\d[ \-]*){13,19}\b", "[card-hidden]", line)
+    return line.strip()[:120]
+
+def danger(text):
+    out = []
+    for i, line in enumerate(text.splitlines(), 1):
+        for rx, tag in THREATS:
+            if rx.search(line):
+                out.append({"line": i, "tag": tag, "cut": clean_snip(line)})
+                break
+    return out
+
+def gather(text):
+    mails = []
+    off = []
+    alm = []
+    si = []
+    for m in PAT_MAIL.finditer(text):
+        v = m.group(0).strip().strip(END_CHARS + ",")
+        if not check_mail(v):
+            continue
+        k = alu_kind(v)
+        h = short_mail(v)
+        mails.append({"hide": h, "alu": k})
+        if k == "official":
+            off.append(h)
+        elif k == "alumni":
+            alm.append(h)
+        elif k == "si":
+            si.append(h)
+    bad = danger(text)
+    badlines = set(x["line"] for x in bad)
+    pos = [0]
+    for m in re.finditer(r"\n", text):
+        pos.append(m.start() + 1)
+    import bisect
+    cards = []
+    for m in PAT_CARD.finditer(text):
+        if bisect.bisect_right(pos, m.start()) in badlines:
+            continue
+        v = m.group(0).strip()
+        if check_card(v):
+            cards.append({"hide": short_card(v), "ok": True})
+    links = []
+    for m in PAT_LINK.finditer(text):
+        v = m.group(0).rstrip(END_CHARS)
+        if check_link(v):
+            links.append({"link": v})
+    tels = []
+    for m in PAT_TEL.finditer(text):
+        v = m.group(0).strip().rstrip(".,;:")
+        if check_tel(v):
+            tels.append({"hide": short_tel(v)})
+    return mails, off, alm, si, cards, links, tels, bad
+
+def main():
+    text = read_src(SRC)
+    if not text:
+        print("empty")
+        return None
+    mails, off, alm, si, cards, links, tels, bad = gather(text)
+    print("mails " + str(len(mails)) + " off " + str(len(off)) + " alm " + str(len(alm)) + " si " + str(len(si)))
+    for e in mails[:6]:
+        print(e["hide"] + " " + e["alu"])
+    print("cards " + str(len(cards)))
+    for c in cards:
+        print(c["hide"])
+    print("links " + str(len(links)))
+    for u in links[:6]:
+        print(u["link"])
+    print("tels " + str(len(tels)))
+    for t in tels[:6]:
+        print(t["hide"])
+    print("danger " + str(len(bad)))
+    data = {
+        "file": SRC,
+        "kinds": ["mails", "cards", "links", "tels"],
+        "mails": mails,
+        "alu_official": off,
+        "alu_alumni": alm,
+        "alu_si": si,
+        "cards": cards,
+        "links": links,
+        "tels": tels,
+        "dangers": bad,
+        "totals": {
+            "mails": len(mails),
+            "official": len(off),
+            "alumni": len(alm),
+            "si": len(si),
+            "cards": len(cards),
+            "links": len(links),
+            "tels": len(tels),
+            "danger": len(bad),
+        },
+    }
+    p = Path(DST)
+    p.parent.mkdir(parents=True, exist_ok=True)
+    with open(p, "w", encoding="utf-8") as f:
+        json.dump(data, f, indent=2, ensure_ascii=False)
+    print("saved " + DST)
+    return data
+
+if __name__ == "__main__":
+    main()
