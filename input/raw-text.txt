@@ -1,0 +1,104 @@
+================================================================
+NORTHERN LIBRARY SYNC -- export 2026-05-11 -- desk+members+bursary+notices
+untrusted merged feed, contains PII, never render raw in a browser
+================================================================
+
+-- HELP DESK CHATS --
+[chat 5101] Beatrice Uwera <beatrice.uwera11@gmail.com> Mon 09:14
+  can't access my shelf, login beatrice.uwera11@gmail.com, alt b.uwera+lib@yahoo.com
+  ring me on +250 788 610 204 after 10. my list is at
+  https://library.example.rw/shelves/beatrice?view=all
+
+[chat 5102] Claude Bizimana <claude.b@alueducation.com> Mon 09:47
+  staff shelf move, add claude.b@alueducation.com to rota
+  new assistant is PATRICK.N@ALUEDUCATION.COM, still fine in caps
+  rota page https://portal.alueducation.com/library/rota#week20
+  desk ext (0250) 788-311-409
+
+[chat 5103] bursary alum <fund.2026@alumni.alueducation.com> Mon 10:22
+  awards list from fund.2026@alumni.alueducation.com, second sign
+  Divine.Mukiza@ALUMNI.ALUEDUCATION.COM. details at
+  https://alumni.alueducation.com/awards/2026spring?from=desk
+  call +44 20 7946 8820
+
+[chat 5104] media lab <editors-03@si.alueducation.com> Mon 11:05
+  slot held by editors-03@si.alueducation.com, backup print.room_2@SI.ALUEDUCATION.COM
+  manual http://si.alueducation.com/print/book?s=3 (http allowed)
+  desk line 0788 902 114
+
+[chat 5105] broken form <olivier..habyrimana@example.com> Mon 11:31
+  my address olivier..habyrimana@example.com keeps failing, also .olivier@mail.com
+  and olivier.@mail.com. my phone is 77, too short. my page is
+  www.olivier.dev with no scheme, so not a link
+
+[chat 5106] strange mail <lib@alueducation.com.evil.com> Mon 11:52
+  reset your pin at http://reset-alueducation.evil.com/?u=claude.b
+  it claims to be from lib@alueducation.com.evil.com, it is not ALU
+  also contact help@fake-alueducation.com and a@si.alueducation.com.evil.org
+
+[chat 5107] Grace <grace.k_77@sub.mail.example.net> Mon 13:02
+  receipt at https://bills.example.net/t/88112?c=rwf, mail me at
+  grace.k_77@sub.mail.example.net or +33 6 71 08 44 29
+
+-- MEMBER CSV --
+id | name | email | phone | page
+301 | Aline Seruhungo | aline.seruhungo@gmail.com | +250788209311 | https://example.com/members/aline.s
+302 | Peter Osei | peter.osei+club@company.co.uk | +234 803 611 2098 | https://company.co.uk/m/peter?x=lib
+303 | Nadia R. | nadia_r42@mail-hub.example.org | 020 7946 5519 | http://notes.example.org/~nadia/kigali
+304 | Samuel K. | samuel.k@alueducation.com | +250-788-902-455 | https://portal.alueducation.com/m/samuel.k
+305 | Ruth A. | ruth.a@alumni.alueducation.com | +254 722 908 331 | https://alumni.alueducation.com/m/ruth.a
+306 | Eric D. | eric.d@si.alueducation.com | +250 783 410 982 | https://si.alueducation.com/u/eric
+307 | bad row | not-an-email | 91 | https://
+308 | spam row | spammer@evil.com[name=q] | +999 999 999 999 999 999 999 | ftp://files.evil.com/q
+309 | Kenji T. | kenji.t_2026@lab.example.com.au | (212) 555-0163 | https://example.com:9443/q?city=musanze#m
+310 | test | hugo..hugo@example.com | 888-8888 | http://example .com/broken
+311 | empty | user@.com | abc-def-ghij | htp://typo.example.com
+312 | phish | desk@alueducation.com.evil.com | +250 788 410 007 | https://alueducation.com.evil.com/in
+
+-- BURSARY PAYMENTS (hide full numbers in any output) --
+[08:02] paid visa 4111 1111 1111 1111 to aline.seruhungo@gmail.com, ok
+[08:07] paid mastercard 5555-5555-5555-4444 to peter.osei+club@company.co.uk, ok
+[08:11] paid amex 3782 822463 10005 to kenji.t_2026@lab.example.com.au, ok
+[08:15] paid discover 6011-1111-1111-1117 to grace.k_77@sub.mail.example.net, ok
+[08:19] declined luhn fail 1234 5678 9012 3456 for test@localhost
+[08:21] declined luhn fail 4111-1111-1111-1112
+[08:26] check plain 4111111111111111 for samuel.k@alueducation.com
+[08:28] ignore short 4111-111-111, too few digits
+[08:30] ignore long 41111111111111111111, too many digits
+[08:36] phone payment card 4012-8888-8888-1881 spoken aloud, caller +250 788 610 204
+[08:41] refund back to 378282246310005, write to bursary@example.com
+[08:46] junk abcd-efgh-ijkl-mnop, not a number
+[08:50] zeros 0000 0000 0000 0000, fake even though checksum passes
+
+-- NOTICE BOARD --
+@n notice: new hours at https://library.example.rw/hours, urgent line +250 788 000 771
+@it: catalog search https://catalog.example.com:8080/s?q=becca&lang=en#r working again
+@spam: prize at www.prize.example.com with no scheme is not a link, mail lead@prize has no TLD
+@troll: <b>fine</b> but <script>alert("hi")</script> removed. also <img src=x onerror=alert(9)> removed
+@sec: removed <iframe src="https://evil.example.com/e"></iframe>, also javascript:alert(document.cookie) and data:text/html,<script>alert(4)</script>
+@db: flagged "'; DROP TABLE members; --" and "UNION SELECT * FROM bursary" plus number 4111 1111 1111 1111 on that line
+@login: failed signin for ' OR '1'='1' -- as reader admin@alueducation.com
+@forum: <object data="https://evil.example.com/v.swf"></object> and <embed src="z"> removed. mail bad<script>@example.com bad. link javascript:takeIt() removed
+
+-- QUICK CHECKS (4 types only) --
+mail good: June.June@Example.COM, low_low@mail-eu.example.com, z@q.co, t+e-8.0@unit.example.io
+mail bad: plainaddress, @no-local.com, me@.com, me@com, me@exam ple.com, me@@example.com, me@example..com, me@example.c, me@example.77
+alu good: C.D@alueducation.com, desk_04@si.alueducation.com, year.2026@alumni.alueducation.com
+alu bad: one@alueducation.com.attacker.com, one@fakealueducation.com, z@si.alueducation.com.evil.org, @alueducation.com
+link good: https://example.com, http://unit.example.co.uk/r?a=1&b=2#s, https://example.com:9000/g_h-i.j?k=go%20home
+link bad: www.example.com, example.com, htp://bad.com, https://, https://exa mple.com, ftp://u.example.com/u
+tel good: +250788610204, +1-800-555-0163, 0788 610 204, (0788) 610-204, +44.20.7946.8820
+tel bad: 77, 99-11, abc-def-ghij, 888-8888, +9999999999999999999 with 19 digits
+
+-- SHORT NOTES --
+Aline (aline.seruhungo@gmail.com, +250 788 209 311) receipt https://pay.example.com/r/cc_40 ready
+Media slot moved to afternoon, sheet https://si.alueducation.com/print?w=late#n, ask editors-03@si.alueducation.com
+Awards tea Friday, confirm fund.2026@alumni.alueducation.com or +250 783 902 114, info https://alumni.alueducation.com/tea/april
+PHISH DRILL: note for samuel.k@alueducation.com to click http://reset-alueducation.evil.com/ from desk@alueducation.com.evil.com, ignore it
+Release on https://app.example.com/lib?v=4.0, ring +1 (415) 555-0144 if stuck
+Till mock: <span class="fee">$18 test</span> <button>Pay 5555 5555 5555 4444</button>, never show full numbers for real
+Paste mess: reach info @ example.com with spaces is wrong. ring +250 788 610 204. with dot ok
+
+================================================================
+END -- good plus bad plus hostile mixed, keep good, drop bad, flag hostile
+================================================================
