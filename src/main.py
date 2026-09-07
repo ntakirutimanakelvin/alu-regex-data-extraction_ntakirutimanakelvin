@@ -136,10 +136,10 @@ def clean_snip(line):
 
 def danger(text):
     out = []
-    for i, line in enumerate(text.splitlines(), 1):
-        for rx, tag in THREATS:
-            if rx.search(line):
-                out.append({"line": i, "tag": tag, "cut": clean_snip(line)})
+    for number, line in enumerate(text.splitlines(), 1):
+        for pattern, label in THREATS:
+            if pattern.search(line):
+                out.append({"line": number, "tag": label, "cut": clean_snip(line)})
                 break
     return out
 
@@ -148,42 +148,42 @@ def gather(text):
     off = []
     alm = []
     si = []
-    for m in PAT_MAIL.finditer(text):
-        v = m.group(0).strip().strip(END_CHARS + ",")
-        if not check_mail(v):
+    for found in PAT_MAIL.finditer(text):
+        value = found.group(0).strip().strip(END_CHARS + ",")
+        if not check_mail(value):
             continue
-        k = alu_kind(v)
-        h = short_mail(v)
-        mails.append({"hide": h, "alu": k})
-        if k == "official":
-            off.append(h)
-        elif k == "alumni":
-            alm.append(h)
-        elif k == "si":
-            si.append(h)
+        group = alu_kind(value)
+        hidden = short_mail(value)
+        mails.append({"hide": hidden, "alu": group})
+        if group == "official":
+            off.append(hidden)
+        elif group == "alumni":
+            alm.append(hidden)
+        elif group == "si":
+            si.append(hidden)
     bad = danger(text)
-    badlines = set(x["line"] for x in bad)
+    badlines = set(item["line"] for item in bad)
     pos = [0]
-    for m in re.finditer(r"\n", text):
-        pos.append(m.start() + 1)
+    for found in re.finditer(r"\n", text):
+        pos.append(found.start() + 1)
     import bisect
     cards = []
-    for m in PAT_CARD.finditer(text):
-        if bisect.bisect_right(pos, m.start()) in badlines:
+    for found in PAT_CARD.finditer(text):
+        if bisect.bisect_right(pos, found.start()) in badlines:
             continue
-        v = m.group(0).strip()
-        if check_card(v):
-            cards.append({"hide": short_card(v), "ok": True})
+        value = found.group(0).strip()
+        if check_card(value):
+            cards.append({"hide": short_card(value), "ok": True})
     links = []
-    for m in PAT_LINK.finditer(text):
-        v = m.group(0).rstrip(END_CHARS)
-        if check_link(v):
-            links.append({"link": v})
+    for found in PAT_LINK.finditer(text):
+        value = found.group(0).rstrip(END_CHARS)
+        if check_link(value):
+            links.append({"link": value})
     tels = []
-    for m in PAT_TEL.finditer(text):
-        v = m.group(0).strip().rstrip(".,;:")
-        if check_tel(v):
-            tels.append({"hide": short_tel(v)})
+    for found in PAT_TEL.finditer(text):
+        value = found.group(0).strip().rstrip(".,;:")
+        if check_tel(value):
+            tels.append({"hide": short_tel(value)})
     return mails, off, alm, si, cards, links, tels, bad
 
 def main():
@@ -193,17 +193,17 @@ def main():
         return None
     mails, off, alm, si, cards, links, tels, bad = gather(text)
     print("mails " + str(len(mails)) + " off " + str(len(off)) + " alm " + str(len(alm)) + " si " + str(len(si)))
-    for e in mails[:6]:
-        print(e["hide"] + " " + e["alu"])
+    for mail_info in mails[:6]:
+        print(mail_info["hide"] + " " + mail_info["alu"])
     print("cards " + str(len(cards)))
-    for c in cards:
-        print(c["hide"])
+    for card_info in cards:
+        print(card_info["hide"])
     print("links " + str(len(links)))
-    for u in links[:6]:
-        print(u["link"])
+    for link_info in links[:6]:
+        print(link_info["link"])
     print("tels " + str(len(tels)))
-    for t in tels[:6]:
-        print(t["hide"])
+    for tel_info in tels[:6]:
+        print(tel_info["hide"])
     print("danger " + str(len(bad)))
     data = {
         "file": SRC,
@@ -229,8 +229,8 @@ def main():
     }
     p = Path(DST)
     p.parent.mkdir(parents=True, exist_ok=True)
-    with open(p, "w", encoding="utf-8") as f:
-        json.dump(data, f, indent=2, ensure_ascii=False)
+    with open(p, "w", encoding="utf-8") as handle:
+        json.dump(data, handle, indent=2, ensure_ascii=False)
     print("saved " + DST)
     return data
 
