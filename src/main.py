@@ -26,74 +26,74 @@ END_CHARS = ".,;:!?)]}'\"\\"
 
 def read_src(path=SRC):
     try:
-        with open(path, encoding="utf-8") as f:
-            return f.read()
+        with open(path, encoding="utf-8") as handle:
+            return handle.read()
     except FileNotFoundError:
         print("missing " + path)
         return None
 
-def check_mail(s):
-    s = s.strip().strip(END_CHARS + ",")
-    if s.count("@") != 1:
+def check_mail(candidate):
+    candidate = candidate.strip().strip(END_CHARS + ",")
+    if candidate.count("@") != 1:
         return False
-    if ".." in s or " " in s:
+    if ".." in candidate or " " in candidate:
         return False
-    if len(s) < 5 or len(s) > 254:
+    if len(candidate) < 5 or len(candidate) > 254:
         return False
-    a, b = s.split("@")
-    if not a or not b or "." not in b:
+    local, domain = candidate.split("@")
+    if not local or not domain or "." not in domain:
         return False
-    if a[0] == "." or a[-1] == "." or a[-1] == "-":
+    if local[0] == "." or local[-1] == "." or local[-1] == "-":
         return False
-    if b[0] in ".-" or b[-1] in ".-":
+    if domain[0] in ".-" or domain[-1] in ".-":
         return False
-    for part in b.split("."):
+    for part in domain.split("."):
         if not part or part[0] == "-" or part[-1] == "-":
             return False
         if "_" in part or " " in part:
             return False
-    tail = b.rsplit(".", 1)[1]
+    tail = domain.rsplit(".", 1)[1]
     if len(tail) < 2 or not tail.isalpha():
         return False
     return True
 
-def alu_kind(s):
-    s = s.strip().lower()
-    if "@" not in s or " " in s or ".." in s:
+def alu_kind(mail_text):
+    mail_text = mail_text.strip().lower()
+    if "@" not in mail_text or " " in mail_text or ".." in mail_text:
         return None
-    _, d = s.rsplit("@", 1)
-    if d == "si.alueducation.com":
+    _, domain = mail_text.rsplit("@", 1)
+    if domain == "si.alueducation.com":
         return "si"
-    if d == "alumni.alueducation.com":
+    if domain == "alumni.alueducation.com":
         return "alumni"
-    if d == "alueducation.com":
+    if domain == "alueducation.com":
         return "official"
     return "general"
 
-def check_card(s):
-    d = re.sub(r"[ \-]", "", s.strip())
-    if not d.isdigit() or not 13 <= len(d) <= 19:
+def check_card(card_text):
+    number = re.sub(r"[ \-]", "", card_text.strip())
+    if not number.isdigit() or not 13 <= len(number) <= 19:
         return False
-    if d == d[0] * len(d):
+    if number == number[0] * len(number):
         return False
-    tot = 0
-    for i, c in enumerate(d[::-1]):
-        n = int(c)
-        if i % 2 == 1:
-            n *= 2
-            if n > 9:
-                n -= 9
-        tot += n
-    return tot % 10 == 0
+    total = 0
+    for index, digit in enumerate(number[::-1]):
+        value = int(digit)
+        if index % 2 == 1:
+            value *= 2
+            if value > 9:
+                value -= 9
+        total += value
+    return total % 10 == 0
 
-def check_link(s):
-    s = s.strip().rstrip(END_CHARS)
-    if " " in s or "\t" in s:
+def check_link(link_text):
+    link_text = link_text.strip().rstrip(END_CHARS)
+    if " " in link_text or "\t" in link_text:
         return False
-    t = s.lower()
-    if not t.startswith("http://") and not t.startswith("https://"):
+    lowered = link_text.lower()
+    if not lowered.startswith("http://") and not lowered.startswith("https://"):
         return False
-    host = t.split("://", 1)[1].split("/", 1)[0].split(":")[0].split("@")[-1]
+    host = lowered.split("://", 1)[1].split("/", 1)[0].split(":")[0].split("@")[-1]
     if "." not in host:
         return False
     if host[0] in ".-" or host[-1] in ".-":
@@ -102,32 +102,32 @@ def check_link(s):
         return False
     return True
 
-def check_tel(s):
-    if re.search(r"[A-Za-z]", s):
+def check_tel(phone_text):
+    if re.search(r"[A-Za-z]", phone_text):
         return False
-    if "/" in s or re.search(r"\d{4}-\d{2}-\d{2}", s):
+    if "/" in phone_text or re.search(r"\d{4}-\d{2}-\d{2}", phone_text):
         return False
-    d = re.sub(r"\D", "", s)
-    if not 7 <= len(d) <= 15 or len(set(d)) == 1:
+    digits = re.sub(r"\D", "", phone_text)
+    if not 7 <= len(digits) <= 15 or len(set(digits)) == 1:
         return False
-    if len(d) >= 10:
-        plus = s.strip().startswith("+")
-        par = "(" in s or ")" in s
-        if not (plus or par or len(re.findall(r"[\s.\-()]", s)) >= 2):
+    if len(digits) >= 10:
+        has_plus = phone_text.strip().startswith("+")
+        has_bracket = "(" in phone_text or ")" in phone_text
+        if not (has_plus or has_bracket or len(re.findall(r"[\s.\-()]", phone_text)) >= 2):
             return False
     return True
 
-def short_mail(s):
-    a, b = s.split("@", 1)
-    return a[0] + "***@" + b
+def short_mail(mail_text):
+    local, domain = mail_text.split("@", 1)
+    return local[0] + "***@" + domain
 
-def short_card(s):
-    d = re.sub(r"[ \-]", "", s)
-    return "XXXX-XXXX-XXXX-" + d[-4:]
+def short_card(card_text):
+    number = re.sub(r"[ \-]", "", card_text)
+    return "XXXX-XXXX-XXXX-" + number[-4:]
 
-def short_tel(s):
-    d = re.sub(r"\D", "", s)
-    return "+*** *** " + d[-3:]
+def short_tel(phone_text):
+    digits = re.sub(r"\D", "", phone_text)
+    return "+*** *** " + digits[-3:]
 
 def clean_snip(line):
     line = PAT_MAIL.sub("[mail-hidden]", line)
